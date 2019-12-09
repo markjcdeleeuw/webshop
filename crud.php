@@ -13,13 +13,11 @@ class Crud {
         } return $conn; // ik weet dat ik dit eruit wil krijgen. 
     }
 
-    public function create($conn) {
-        $sql = ""; // mijn databases bestaan nog dus dit heeft geen prio op het moment
-        if ($conn->query($sql) === TRUE) {
-            echo "Table  created successfully";
-        } else {
-            echo "Error creating table: " . $conn->error;
-        }
+    public function create($queryinput) {
+        $conn = $this ->connect();
+        $sql = $queryinput; // mijn databases bestaan nog dus dit heeft geen prio op het moment
+        $createBool = $conn->query($sql) ;
+        return $createBool; 
     }
 
     public function readVariable($queryinput) { 

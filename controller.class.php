@@ -66,6 +66,10 @@ class Controller {
                 require_once "shop.form.class.php";
                 $htmlpage = new shop();
                 break;
+            case "java";
+                require_once "javaStatisch.php";
+                $htmlpage = new javaStatisch($artikel);
+                break; 
             default:
                 require_once "static.page.class.php";
                 $htmlpage = new Statisch($artikel);

@@ -1,89 +1,47 @@
 <?php
 
-class Content {
+require_once "basichtml.page.class.php";
 
-    public $content = '';
+class Webshop extends Basichtml {
 
-    public function getVariables($page) {
-        switch ($page) {
-            case 'home':
-                $content = "dit is die home pagina, waar het allemaal begint  ";
-                break;
-            case 'about':
-                $content = '<br><br><br> <center><img src="pictures/austin.gif"></img></center><br>
-                <p> De heer de leeuw is geboren in Teteringen  </p>  
-		<p> Hij woont nu in nijmegen</P> 
-		<p> er dient een extra paragraaf gevult te worden</p> 
-		<p> ik vermoed dat een van de volgende lessen deze lelijke opmaak minder lelijk zla maken </p> 
-		<p> bovenstaande paragraaf is blind getypt, vandaar dat zal als zla wordt gespeld</p>   ';
-                break;
-            case 'contact':
-                $content = array(
-                    'FirstName' => array(
-                    'type' => 'text',
-                    'name' => 'fname',
-                    'label' => 'First Name'
-                    ),
-                    'Email' => array(
-                    'type' => 'email',
-                    'name' => 'email',
-                    'label' => 'Email Adress'
-                    ),
-                    'Bericht' => array(
-                    'type' => 'textarea',
-                    'name' => 'bericht',
-                    'label' => 'Message'
-                    )
-                );
-                break;
-            case 'login':
-                $content = ['email' => array(
-                    'type' => 'email',
-                    'name' => 'email',
-                    'label' => 'Email Adress'
-                    ),
-                    'Wachtwoord' => array(
-                    'type' => 'text',
-                    'name' => 'wachtwoord',
-                    'label' => 'Wachtwoord',
-                    ),
-                    ];
-                break;
-            case 'registreer':
-                $content = array
-                    (
-                    'FirstName' => array(
-                    'type'  => 'text',
-                    'name'  => 'fname',
-                    'label' => 'First Name'
-                    ),
-                    'email' => array(
-                    'type' => 'email',
-                    'name'  => 'email',
-                    'label' => 'Email Adress'
-                    ),
-                    'Wachtwoord' => array(
-                    'type' => 'text',
-                    'name' => 'wachtwoord',
-                    'label' => 'Wachtwoord'
-                    ),
-                    'WachtWoord2' => array(
-                    'type' => 'text',
-                    'name' => 'wachtWoord2',
-                    'label' => 'Herhaal Wachtwoord'
-                    ),
-                );
-                break;
-                case 'response':
-                $content = 'Gefeliciteerd, ' . $_SESSION['naam'] . ' en welkom op de gereguleerde succes pagina. <br>
-                Omdat het allemaal zo succesvol was, hier een worstelaar die dat fijn vind<br>
-                <img width="420" height="420" src="pictures/yesh.gif" ></img>';
-                break;
-                case 'default':
-                $content = " bladieblad";
-                break;
+    protected function bodyContent() {
+        $this->showMenu();
+        $this->showBodySection();
+        $this->showFooter();
+    }
+
+    private function showMenu()// inlog menu nog toevoegen. 
+     { 
+        switch ($_SESSION['inlog']) {
+            case "ingelogd":
+                echo ' <ul> 
+                    <li> <a href="index.php?page=home">Home</a></li>
+                    <li><a href="index.php?page=about">About </a></li>
+                    <li><a href="index.php?page=contact">Contact</a> </li>
+                    <li><a href="index.php?page=cart">Winkelmand</a></li> 
+                    <li><a href="index.php?page=webshop">Webshop</a></li>
+                    <li><a href="index.php?page=magazijn">Magazijn</a></li>
+                    <li><a href="index.php?page=uitgelogd">Log Uit ' . $_SESSION['naam'] . '</a></li> <br></ul>';
+    break;
+
+            default:
+                echo '<ul>
+                    <li> <a href="index.php?page=home">Home</a> </li>
+                    <li> <a href="index.php?page=about">About </a></li>
+                    <li> <a href="index.php?page=contact">Contact</a></li>
+                    <li> <a href="index.php?page=login">Login</a></li>
+                    <li><a href="index.php?page=webshop">Webshop</a><li>
+                    <li>  <a href="index.php?page=registreer">Registreren</a></li><br>
+        </ul>';
         }
-        return $content; // zelfde probleem
+    }
+
+    private function showFooter() {
+        echo '<footer><p> © 2019 Mark de Leeuw </p> </footer> ';
+    }
+
+    protected function showBodySection() {
+        echo'test';
     }
 
 }

@@ -1,14 +1,7 @@
 <?php
-
-require_once 'webshop.page.class.php';
-
-class Statisch extends Webshop {
-
-    public function __construct($artikel) {
-        $this->artikel = $artikel;
-    }
-    
-    protected function showBodySection() {
-        echo'' . $this->artikel . '';
-    }
-}
+ 
+require "javaStatisch.php"; 
+$showpage = new JavaStatisch(); 
+$page = 'java';
+var_dump($page); 
+$showpage ->showHtmlPage();
